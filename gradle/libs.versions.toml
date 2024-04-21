@@ -9,7 +9,7 @@ felis = "1.1-ALPHA"
 mm-annotations = { group = "org.stianloader", name = "micromixin-annotations", version.ref = "micromixin" }
 mm-runtime = { group = "org.stianloader", name = "micromixin-runtime", version.ref = "micromixin" }
 mm-transformer = { group = "org.stianloader", name = "micromixin-transformer", version.ref = "micromixin" }
-felis-loader = { module = "io.github.joemama:loader", version.ref = "felis" }
+felis = { group = "io.github.joemama", name = "felis", version.ref = "felis" }
 
 [plugins]
 felis-dam = { id = "felis-dam", version.ref = "dam" }

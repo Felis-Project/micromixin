@@ -101,3 +101,4 @@ object MicroMixinLoaderPlugin : LoaderPluginEntrypoint {
             logger.warn(message, args)
     }
 }
+

@@ -13,7 +13,7 @@ loaderMake {
 }
 
 dependencies {
-    implementation(libs.felis.loader)
+    implementation(libs.felis)
     compileOnlyApi(libs.mm.annotations)
     runtimeOnly(libs.mm.runtime)
     implementation(libs.mm.transformer)
