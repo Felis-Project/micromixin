@@ -1,11 +1,11 @@
-package io.github.joemama.loader.micromixin
+package felis.micromixin
 
-import io.github.joemama.loader.LoaderPluginEntrypoint
-import io.github.joemama.loader.ModLoader
-import io.github.joemama.loader.meta.ModMeta
-import io.github.joemama.loader.transformer.ClassContainer
-import io.github.joemama.loader.transformer.Transformation
-import io.github.joemama.loader.transformer.TransformingClassLoader
+import felis.LoaderPluginEntrypoint
+import felis.ModLoader
+import felis.meta.ModMeta
+import felis.transformer.ClassContainer
+import felis.transformer.Transformation
+import felis.transformer.TransformingClassLoader
 import net.peanuuutz.tomlkt.asTomlArray
 import net.peanuuutz.tomlkt.asTomlTable
 import net.peanuuutz.tomlkt.getString

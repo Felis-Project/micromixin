@@ -3,8 +3,8 @@ plugins {
     `maven-publish`
 }
 
-group = "io.github.joemama"
-version = "1.1-ALPHA"
+group = "felis"
+version = "1.2.0-alpha"
 
 val mmVersion = "0.4.0-a20240227"
 
@@ -22,6 +22,22 @@ dependencies {
 tasks.processResources {
     filesMatching("mods.toml") {
         expand("version" to version)
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+    withJavadocJar()
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
