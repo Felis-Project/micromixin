@@ -4,12 +4,16 @@ plugins {
 }
 
 group = "felis"
-version = "1.2.0-alpha"
+version = "1.2.1-alpha"
 
 val mmVersion = "0.4.0-a20240227"
 
 loaderMake {
-    version = "1.20.4"
+    version = "1.20.5"
+}
+
+repositories {
+    mavenLocal()
 }
 
 dependencies {
@@ -27,17 +31,17 @@ tasks.processResources {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
-    targetCompatibility = JavaVersion.VERSION_17
-    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_21
     withSourcesJar()
     withJavadocJar()
 }
 
 kotlin {
     jvmToolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
