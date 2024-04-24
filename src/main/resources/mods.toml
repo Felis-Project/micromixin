@@ -1,6 +1,6 @@
 name="MicroMixin"
 version = "${version}"
-description = "An implementation of MicroMixin from StianLoader as a loader plugin"
+description = "An implementation of Micromixin from StianLoader as a loader plugin"
 modid = "micromixin"
 
 [[entrypoints]]
