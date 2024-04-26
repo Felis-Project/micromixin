@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "felis"
-version = "1.2.3-alpha"
+version = "1.2.4-alpha"
 
 val mmVersion = "0.4.0-a20240227"
 
