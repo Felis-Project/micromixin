@@ -1,15 +1,15 @@
+@file:Suppress("VulnerableLibrariesLocal")
+
 plugins {
     alias(libs.plugins.felis.dam)
     `maven-publish`
 }
 
 group = "felis"
-version = "1.2.5-alpha"
-
-val mmVersion = "0.4.0-a20240227"
+version = "1.3.0-alpha+mm${libs.versions.micromixin.get()}"
 
 loaderMake {
-    version = "1.20.5"
+    version = "1.20.6"
 }
 
 repositories {
@@ -24,8 +24,11 @@ dependencies {
 }
 
 tasks.processResources {
-    filesMatching("mods.toml") {
-        expand("version" to version)
+    filesMatching("felis.mod.toml") {
+        expand(
+            "version" to version,
+            "mm_version" to libs.versions.micromixin.get()
+        )
     }
 }
 

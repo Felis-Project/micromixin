@@ -2,34 +2,31 @@ package felis.micromixin
 
 import felis.LoaderPluginEntrypoint
 import felis.ModLoader
-import felis.meta.ModMeta
+import felis.meta.ModMetadataExtended
 import felis.transformer.ClassContainer
 import felis.transformer.Transformation
 import felis.transformer.TransformingClassLoader
-import net.peanuuutz.tomlkt.asTomlArray
-import net.peanuuutz.tomlkt.asTomlTable
-import net.peanuuutz.tomlkt.getString
+import net.peanuuutz.tomlkt.asTomlLiteral
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.Opcodes
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.stianloader.micromixin.transform.MixinConfig
-import org.stianloader.micromixin.transform.MixinTransformer
+import org.stianloader.micromixin.transform.api.MixinConfig
 import org.stianloader.micromixin.transform.api.MixinLoggingFacade
-import org.stianloader.micromixin.transform.supertypes.ClassWrapper
-import org.stianloader.micromixin.transform.supertypes.ClassWrapperPool
+import org.stianloader.micromixin.transform.api.MixinTransformer
+import org.stianloader.micromixin.transform.api.supertypes.ClassWrapper
+import org.stianloader.micromixin.transform.api.supertypes.ClassWrapperPool
 
 object MicroMixinLoaderPlugin : LoaderPluginEntrypoint {
-    data class Mixin(val path: String)
+    data class MixinMetadata(val path: String)
 
     @Suppress("MemberVisibilityCanBePrivate")
-    val ModMeta.mixins: List<Mixin>
-        get() = this.toml["mixins"]
-            ?.asTomlArray()
-            ?.map { it.asTomlTable().getString("path") }
-            ?.map { Mixin(it) }
-            ?: emptyList()
+    val ModMetadataExtended.mixin: MixinMetadata?
+        get() = this["mixins"]
+            ?.asTomlLiteral()
+            ?.toString()
+            ?.let { MixinMetadata(it) }
 
     private val logger = LoggerFactory.getLogger("MicroMixin")
     private val classWrappers = ClassWrapperPool().also {
@@ -60,7 +57,7 @@ object MicroMixinLoaderPlugin : LoaderPluginEntrypoint {
     override fun onLoaderInit() {
         this.logger.info("Initializing Micromixin")
         var configs = 0
-        ModLoader.discoverer.flatMap { it.meta.mixins }.map(Mixin::path).forEach { path ->
+        ModLoader.discoverer.mods.mapNotNull { it.metadata.mixin }.map(MixinMetadata::path).forEach { path ->
             ModLoader.classLoader.getResourceAsStream(path)?.use { it.readAllBytes() }?.let {
                 transformer.addMixin(ModLoader.classLoader, MixinConfig.fromString(String(it)))
                 configs++
@@ -91,6 +88,9 @@ object MicroMixinLoaderPlugin : LoaderPluginEntrypoint {
     }
 
     class MMLogger(private val logger: Logger) : MixinLoggingFacade {
+        override fun debug(p0: Class<*>?, message: String?, vararg args: Any?) =
+            logger.debug(message, args)
+
         override fun error(clazz: Class<*>?, message: String?, vararg args: Any?) =
             logger.error(message, args)
 

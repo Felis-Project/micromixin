@@ -1,0 +1,21 @@
+schema = 1
+name="Micromixin"
+version = "${version}"
+description = "An implementation of Micromixin from StianLoader as a loader plugin"
+modid = "micromixin"
+
+[[entrypoints]]
+id = "loader_plugin"
+specifier = "felis.micromixin.MicroMixinLoaderPlugin"
+
+[[dependencies.requires]]
+type = "library"
+group = "org.stianloader"
+artifact = "micromixin-transformer"
+version = ">=${mm_version}"
+
+[[dependencies.requires]]
+type = "library"
+group = "org.stianloader"
+artifact = "micromixin-runtime"
+version = ">=${mm_version}"

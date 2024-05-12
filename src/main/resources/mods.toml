@@ -1,8 +1,0 @@
-name="MicroMixin"
-version = "${version}"
-description = "An implementation of Micromixin from StianLoader as a loader plugin"
-modid = "micromixin"
-
-[[entrypoints]]
-id = "loader_plugin"
-path = "felis.micromixin.MicroMixinLoaderPlugin"
