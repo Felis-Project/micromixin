@@ -3,7 +3,7 @@
 [versions]
 micromixin = "0.5.0-a20240509"
 dam = "1.9.0-alpha"
-felis = "1.5.0-alpha"
+felis = "1.6.0-alpha"
 
 [libraries]
 mm-annotations = { group = "org.stianloader", name = "micromixin-annotations", version.ref = "micromixin" }
