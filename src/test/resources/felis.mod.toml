@@ -1,0 +1,5 @@
+schema = 1
+modid = "testmod"
+name = "Testmod"
+version = "1.0.0"
+mixins = "testmod.mixins.json"
