@@ -6,10 +6,10 @@ plugins {
 }
 
 group = "felis"
-version = "1.4.0-alpha+mm${libs.versions.micromixin.get()}"
+version = "1.6.0-alpha+mm${libs.versions.micromixin.get()}"
 
 loaderMake {
-    version = "1.20.6"
+    version = "1.21"
 }
 
 repositories {
@@ -21,6 +21,10 @@ dependencies {
     compileOnlyApi(libs.mm.annotations)
     runtimeOnly(libs.mm.runtime)
     implementation(libs.mm.transformer)
+
+    include(libs.mm.transformer)
+    include("org.json:json:20230618")
+    include(libs.mm.runtime)
 }
 
 tasks.processResources {

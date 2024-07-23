@@ -9,13 +9,5 @@ id = "loader_plugin"
 specifier = "felis.micromixin.MicroMixinLoaderPlugin"
 
 [[dependencies.requires]]
-type = "library"
-group = "org.stianloader"
-artifact = "micromixin-transformer"
-version = ">=${mm_version}"
-
-[[dependencies.requires]]
-type = "library"
-group = "org.stianloader"
-artifact = "micromixin-runtime"
-version = ">=${mm_version}"
+modid =  "felis"
+version = ">=1.8.0-alpha"
