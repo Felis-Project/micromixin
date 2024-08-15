@@ -3,8 +3,6 @@ package felis.micromixin
 import felis.LoaderPluginEntrypoint
 import felis.ModLoader
 import felis.meta.ModMetadataExtended
-import felis.transformer.ClassContainer
-import felis.transformer.Transformation
 import felis.transformer.TransformingClassLoader
 import net.peanuuutz.tomlkt.asTomlLiteral
 import org.slf4j.Logger
@@ -41,15 +39,13 @@ object MicroMixinLoaderPlugin : LoaderPluginEntrypoint {
             }
         }
 
-        if (configs > 0)
-            this.logger.info("Micromixin successfully initialized with $configs configuration${if (configs > 1) "s" else ""}")
-        ModLoader.transformer.registerTransformation(MicroMixinTransformation)
-    }
+        if (configs > 0) this.logger.info("Micromixin successfully initialized with $configs configuration${if (configs > 1) "s" else ""}")
 
-    object MicroMixinTransformation : Transformation {
-        override fun transform(container: ClassContainer) {
+        ModLoader.transformer.registerTransformation { container ->
             if (transformer.isMixinTarget(container.internalName)) {
                 container.node(transformer::transform)
+            } else {
+                container
             }
         }
     }

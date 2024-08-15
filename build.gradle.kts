@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "felis"
-version = "1.6.0-alpha+mm${libs.versions.micromixin.get()}"
+version = "1.6.1-alpha+mm${libs.versions.micromixin.get()}"
 
 loaderMake {
     version = "1.21"
